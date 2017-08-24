@@ -1,0 +1,22 @@
+body {
+    font-family: 'Inconsolata', monospace;
+}
+
+.jumbotron {
+    background-image: url("../images/friends.jpg");
+    background-position: 50% 65%; 
+    text-align: center;
+    color: #555;
+    background-size: cover;
+    margin-top:20px;
+}
+
+#title {
+    opacity: .9;
+    color: white;
+}
+
+.btn {
+    background-color: black;
+    color: white;
+}
