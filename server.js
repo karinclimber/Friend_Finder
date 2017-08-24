@@ -13,14 +13,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-app.use(express.static('app/public'));
+app.use(express.static(path.join(__dirname, './app/public')));
 
 
-var apiRoutes = require('./app/routing/apiRoutes.js'); 
-var htmlRoutes = require('./app/routing/htmlRoutes.js');
+require(path.join(__dirname, './app/routing/apiRoutes'))(app);
+require(path.join(__dirname, './app/routing/htmlRoutes'))(app);
 
-apiRoutes(app);
-htmlRoutes(app);
 
 //start server
 app.listen(PORT, function() {

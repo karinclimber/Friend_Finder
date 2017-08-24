@@ -9,7 +9,7 @@
     <!-- Latest compiled and minified CSS & JS -->
   <!-- Latest compiled and minified CSS & JS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
  <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
@@ -22,6 +22,11 @@
             <h2>Meet Friends. Bond. Enjoy doing things.</h2>
             <h2>Fill out a survey to find your most compatible friends.</h2>
                 </div>
+                <br>
+        <div class="btn-group" role="group">
+                <a href="/howitworks" class="btn btn-default" style="width:fit-content" role="button">How It Works</a>
+                <a href="/home" class="btn btn-default" style="width:fit-content" role="button">Go Home</a>
+                </div>    
             
     </div>
     <div class="container">
@@ -167,28 +172,35 @@
     <hr>
     <footer class="footer">
         <div class="container">
-     <p><a href="/api/friends">API Friends Link</a> |
+     <p><a href="/api/friend">API Friends Link</a> |
         <a href="https://github.com/karinclimber/Friend_Finder">Github Repo</a></p>
     </div>
     </footer>
 </div>
 
 	<!-- Modal -->
-	<div id="newFriendModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">X</button>
-                        <h2 class="modal-title">Your New Match</h2>
-                    </div>
-                    <div class="modal-body">
-                        <h2 id="bestFriendName"></h2>
-                        <img id="bestFriendImg" src="https://scontent-dfw1-1.xx.fbcdn.net/t31.0-8/13116244_10107568960519320_7024834722285826624_o.jpg" onError="this.src='https://answers.atlassian.com/images/icons/profilepics/default.png'" width=500px alt="Best Friend">
-                    </div>
+	<div class="modal fade" id="myModal">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Your Best Match!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
+                <div class="modal-body">
+                  <p id="match"></p>
+                  <div id="photoMatch">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
-        </div>
-
+          </div>
+          
+     
 <script type="text/javascript">
 $("#submit-button").on("click", function() {
     event.preventDefault();
@@ -201,17 +213,20 @@ $("#submit-button").on("click", function() {
         scores: [ $("#score1").val().trim(), $("#score2").val().trim(),$("#score3").val().trim(),$("#score4").val().trim(),$("#score5").val().trim(),$("#score6").val().trim(),$("#score7").val().trim(),$("#score8").val().trim(),$("#score9").val().trim(),$("#score10").val().trim()]
     }
 console.log(newFriend);
-    var currentURL = window.location.origin;
 
-    $.post(currentURL + '/api/friends', newFriend, function(data) {
-        $("#bestFriendName").text(data.name);
-			$("#bestFriendImg").attr("src", data.photo);
-            $("#bestFriendModal").modal("show");
-    });
+//AJAX posts the data to friends API.
+$.post("/api/friend", newFriend).done(function(data) {
+    //Grab the result from the AJAX post so that the best match's name and photo are displayed.
+
+       $("#match").text(data.name);
+    $("#photoMatch").attr("src", data.photo);
+});
+// Show the modal with the best match
+    $('#myModal').modal('show');
     // return false;
 
 });
-
 </script>
+
 </body>
-</html>
+</html>  
