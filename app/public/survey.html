@@ -215,9 +215,9 @@ $("#submit-button").on("click", function() {
 console.log(newFriend);
 
 //AJAX posts the data to friends API.
-$.post("/api/friend", newFriend).done(function(data) {
+$.post("/api/new2", newFriend).done(function(data) {
     //Grab the result from the AJAX post so that the best match's name and photo are displayed.
-
+console.log('Helloc')
        $("#match").text(data.name);
     $("#photoMatch").attr("src", data.photo);
 });

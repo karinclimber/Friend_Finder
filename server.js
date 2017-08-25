@@ -2,7 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
-
+var apiRouts = require("./app/routing/apiRoutes.js")
 //set up express
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, './app/public')));
 require(path.join(__dirname, './app/routing/apiRoutes'))(app);
 require(path.join(__dirname, './app/routing/htmlRoutes'))(app);
 
-
+app.use('/')
 //start server
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
