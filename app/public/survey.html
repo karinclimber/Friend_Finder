@@ -182,27 +182,26 @@
 
         <!-- Modal -->
 	<div class="modal fade" id="myModal">
-            <div class="modal-dialog" role="document">
+            <!-- <div class="modal-dialog" role="document"> -->
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Your Best Match!</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                  <h2 class="modal-title">Your Best Match!</h2>
                 </div>
                 <div class="modal-body">
-                  <div id="match-name"></div>
-                  <div id="match-photo"></div>
-                  <div id="message"></div>
+                  <h3 id="message"></h3>
+                
+                <br>
+                <img id="match-photo" class="img_modal" src="../public/images/bestfriends.jpg" width="500px" alt="">
+                        </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
-              </div>
+              <!-- </div> -->
             </div>
-          </div>
+          
   <script type="text/javascript">     
-   $.validate();   
+//    $.validate();   
    $("#submit-button").on("click", function() {
             event.preventDefault();
             var newFriend = {
@@ -214,15 +213,18 @@
                 scores: [ $("#score1").val().trim(), $("#score2").val().trim(),$("#score3").val().trim(),$("#score4").val().trim(),$("#score5").val().trim(),$("#score6").val().trim(),$("#score7").val().trim(),$("#score8").val().trim(),$("#score9").val().trim(),$("#score10").val().trim()]
             }
         console.log(newFriend);
-       
+//        console.log("2342")
         //AJAX posts the data to friends API.
-        $.post("/api/friend", newFriend).then(function(response) {
-                //modal pop up
-              $('#match-image').attr('src', response.photo);
-              $('#match-name').text(response.name);
-              $('#message').text('You should be friends with ' + response.name + '!')
+$.post("/api/friend", newFriend).done(function(res) {
+                console.log(res)
+                console.log(res.photo)
+                var imgFile = res.photo;
+                        //modal pop up
+              $('#message').text('You should be friends with ' + res.name + '!')         
+              $('#match-photo').attr("src", res.photo);
+              
             });
-             
+        
             $('#myModal').modal('show');
         });
 

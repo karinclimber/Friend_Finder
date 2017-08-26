@@ -2,7 +2,7 @@ var friends = [
     {
     "name":"Michael",
     "email": "michael@gmail.com",
-    "photo":"../public/images/images.jpeg",
+    "photo":"https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?h=350&auto=compress&cs=tinysrgb",
     "username": "friend123",
     "password": 123456,
     "scores":[

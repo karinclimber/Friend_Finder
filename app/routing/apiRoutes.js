@@ -15,7 +15,7 @@ module.exports = function(app) {
     app.post('/api/friend', function(req,res) {
         // console.log(req.body.name);
         // console.log(req.body.scores.length);
-
+        var userInput = req.body;
         var match = {};
         
         var differenceToBeat = 100;
@@ -28,7 +28,7 @@ module.exports = function(app) {
 
             for (var j = 0; j < friends[i].scores.length; j++) {
 
-                differenceArray.push( Math.abs( req.body.scores[j] - friends[i].scores[j] ) );
+                differenceArray.push( Math.abs( userInput.scores[j] - friends[i].scores[j] ) );
 
             };
 
@@ -55,12 +55,10 @@ module.exports = function(app) {
 
 
         console.log('Your match is: ' + match.name)
-
-        friends.push(req.body)
-        var newMatch = friends[match];
-        res.json(newMatch);
-        // Push the new person into the friends array.
-        
+    // Push the new person into the friends array.
+        friends.push(userInput);
+        res.json(match);
+       
     });
 
 };
