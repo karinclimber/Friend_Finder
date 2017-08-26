@@ -1,8 +1,8 @@
 var friends = [
     {
-    "name":"Ahmed",
-    "email": "ahmed@gmail.com",
-    "photo":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmXfICM9kkTQ8TtzX_JyppqKgI3NkDZ-V4nAygeH1wrI6mGS8XwYbqbUzc",
+    "name":"Michael",
+    "email": "michael@gmail.com",
+    "photo":"../public/images/images.jpeg",
     "username": "friend123",
     "password": 123456,
     "scores":[
@@ -15,6 +15,82 @@ var friends = [
         2,
         5,
         4,
+        1
+      ]
+  },
+  {
+    "name":"Drew",
+    "email": "drew@gmail.com",
+    "photo":"../public/images/drew.jpeg",
+    "username": "friend124",
+    "password": 123456,
+    "scores":[
+        5,
+        2,
+        2,
+        2,
+        2,
+        1,
+        4,
+        3,
+        1,
+        2
+      ]
+  },
+  {
+    "name":"Brett",
+    "email": "brett@gmail.com",
+    "photo":"../public/images/brett.jpeg",
+    "username": "friend23",
+    "password": 123456,
+    "scores":[
+        4,
+        3,
+        2,
+        1,
+        4,
+        5,
+        3,
+        2,
+        1,
+        5
+      ]
+  },
+  {
+    "name":"Susie",
+    "email": "susie@gmail.com",
+    "photo":"../public/images/susie.jpeg",
+    "username": "friend1233",
+    "password": 123456,
+    "scores":[
+        3,
+        4,
+        1,
+        1,
+        1,
+        1,
+        4,
+        3,
+        2,
+        1
+      ]
+  },
+  {
+    "name":"Jessica",
+    "email": "jessica@gmail.com",
+    "photo":"../public/images/jessica.jpeg",
+    "username": "friend123",
+    "password": 123456,
+    "scores":[
+        2,
+        3,
+        2,
+        2,
+        2,
+        3,
+        1,
+        2,
+        3,
         1
       ]
   }

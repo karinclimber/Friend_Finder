@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <!-- Latest compiled and minified CSS & JS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Survey</title>
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
-    <!-- Latest compiled and minified CSS & JS -->
-  <!-- Latest compiled and minified CSS & JS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
- <link rel="stylesheet" type="text/css" href="../css/style.css">
+   
 </head>
 <body>
 <div class="container">
@@ -33,29 +35,29 @@
         <form>
     <h2>Basic Information</h2>
     <hr>         <div class="form-group">
-            <label for="exampleInputEmail1">Name</label>
-            <input type="name" class="form-control" id="name" placeholder="John Doe">
+            <label for="inputName">Name</label>
+            <input data-validation="alphanumeric" type="name" class="form-control" id="name" placeholder="John Doe">
             <small id="nameHelp" class="form-text text-muted">Tell your new friends who you are!</small>
           </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
-                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="friend@friends.com">
+                  <label for="inputEmail">Email</label>
+                  <input type="email" data-validation="email" data-validation-length="min4"class="form-control" id="email" aria-describedby="emailHelp" placeholder="friend@friends.com">
                   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPicture1">Link a Picture</label>
-                  <input type="text" class="form-control" id="photo" placeholder="http://www.imsopretty.com">
+                  <label for="inputPicture">Link a Picture</label>
+                  <input data-validation="url" data-validation-length="min4" type="text" class="form-control" id="photo" placeholder="http://www.imsopretty.com">
                   <small id="pictureHelp" class="form-text text-muted">A picture will help your new friend to identify you!</small>
                 </div>
                 <div class="form-group">
-                <label for="exampleInputEmail1">Username</label>
-                <input type="username" class="form-control" id="username" placeholder="Friend123">
+                <label for="inputUsername">Username</label>
+                <input data-validation="length alphanumeric" data-validation-length="min4" type="username" class="form-control" id="username" placeholder="Friend123">
                 <small id="usernameHelp" class="form-text text-muted">Usernames are case sensitive.</small>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Create a Password</label>
-                <input type="password" class="form-control" id="password" placeholder="123456">
-                <small id="passwordHelp" class="form-text text-muted">Please use at least 6 characters.</small>
+                <input data-validation="length alphanumeric" data-validation-length="max7" type="password" class="form-control" id="password" placeholder="123456">
+                <small id="passwordHelp" class="form-text text-muted">Please use at 7 characters.</small>
             </div>
               <br>
 
@@ -178,7 +180,7 @@
     </footer>
 </div>
 
-	<!-- Modal -->
+        <!-- Modal -->
 	<div class="modal fade" id="myModal">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -189,9 +191,9 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p id="match"></p>
-                  <div id="photoMatch">
-                  </div>
+                  <div id="match-name"></div>
+                  <div id="match-photo"></div>
+                  <div id="message"></div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -199,34 +201,31 @@
               </div>
             </div>
           </div>
-          
-     
-<script type="text/javascript">
-$("#submit-button").on("click", function() {
-    event.preventDefault();
-    var newFriend = {
-        name: $("#name").val().trim(),
-        email: $("#email").val().trim(),
-        photo: $("#photo").val().trim(),
-        username: $("#username").val().trim(),
-        password: $("#password").val().trim(),
-        scores: [ $("#score1").val().trim(), $("#score2").val().trim(),$("#score3").val().trim(),$("#score4").val().trim(),$("#score5").val().trim(),$("#score6").val().trim(),$("#score7").val().trim(),$("#score8").val().trim(),$("#score9").val().trim(),$("#score10").val().trim()]
-    }
-console.log(newFriend);
+  <script type="text/javascript">     
+   $.validate();   
+   $("#submit-button").on("click", function() {
+            event.preventDefault();
+            var newFriend = {
+                name: $("#name").val().trim(),
+                email: $("#email").val().trim(),
+                photo: $("#photo").val().trim(),
+                username: $("#username").val().trim(),
+                password: $("#password").val().trim(),
+                scores: [ $("#score1").val().trim(), $("#score2").val().trim(),$("#score3").val().trim(),$("#score4").val().trim(),$("#score5").val().trim(),$("#score6").val().trim(),$("#score7").val().trim(),$("#score8").val().trim(),$("#score9").val().trim(),$("#score10").val().trim()]
+            }
+        console.log(newFriend);
+       
+        //AJAX posts the data to friends API.
+        $.post("/api/friend", newFriend).then(function(response) {
+                //modal pop up
+              $('#match-image').attr('src', response.photo);
+              $('#match-name').text(response.name);
+              $('#message').text('You should be friends with ' + response.name + '!')
+            });
+             
+            $('#myModal').modal('show');
+        });
 
-//AJAX posts the data to friends API.
-$.post("/api/new2", newFriend).done(function(data) {
-    //Grab the result from the AJAX post so that the best match's name and photo are displayed.
-console.log('Helloc')
-       $("#match").text(data.name);
-    $("#photoMatch").attr("src", data.photo);
-});
-// Show the modal with the best match
-    $('#myModal').modal('show');
-    // return false;
-
-});
 </script>
-
 </body>
 </html>  

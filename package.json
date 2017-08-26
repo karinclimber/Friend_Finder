@@ -6,6 +6,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "jquery-modal": "^0.8.2",
+    "modal": "^1.2.0",
     "mysql": "^2.14.1",
     "path": "^0.12.7",
     "require": "^2.4.20"
